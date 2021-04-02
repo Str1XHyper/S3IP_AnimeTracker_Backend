@@ -4,9 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.security.jpa.Password;
 
 import javax.json.bind.annotation.JsonbTransient;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,13 +12,15 @@ public class User extends PanacheEntityBase implements Serializable {
 
     @Id
     private String iD;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Password
     @JsonbTransient
+    @Column(nullable = false)
     private String password;
+    private Roles role;
 
     public String getiD() {
         return iD;
@@ -53,4 +53,17 @@ public class User extends PanacheEntityBase implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public void Save() {
+        persist();
+    }
+
 }

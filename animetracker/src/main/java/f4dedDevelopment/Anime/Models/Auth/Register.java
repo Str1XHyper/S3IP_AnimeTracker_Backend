@@ -1,4 +1,4 @@
-package f4dedDevelopment.Anime.Models;
+package f4dedDevelopment.Anime.Models.Auth;
 
 public class Register {
     private String username;

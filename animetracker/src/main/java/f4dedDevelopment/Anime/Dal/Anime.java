@@ -15,6 +15,7 @@ public class Anime extends PanacheEntityBase implements Serializable {
     private String Description;
     private String ImgSrc;
     private String JapaneseName;
+    private Integer episodes;
 
     public String getName() {
         return Name;
@@ -58,5 +59,13 @@ public class Anime extends PanacheEntityBase implements Serializable {
 
     public void setJapaneseName(String japaneseName) {
         JapaneseName = japaneseName;
+    }
+
+    public Integer getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(Integer episodes) {
+        this.episodes = episodes;
     }
 }

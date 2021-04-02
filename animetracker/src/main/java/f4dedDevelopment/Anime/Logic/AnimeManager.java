@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import com.google.gson.JsonObject;
 import f4dedDevelopment.Anime.Dal.Anime;
 import f4dedDevelopment.Anime.Dal.AnimeRepository;
-import f4dedDevelopment.Anime.Models.AddAnime;
-import f4dedDevelopment.Anime.Models.EditAnime;
+import f4dedDevelopment.Anime.Models.Anime.AddAnime;
+import f4dedDevelopment.Anime.Models.Anime.EditAnime;
 
 import java.util.List;
 import java.util.UUID;

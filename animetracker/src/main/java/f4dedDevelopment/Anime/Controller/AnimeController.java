@@ -3,8 +3,8 @@ package f4dedDevelopment.Anime.Controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import f4dedDevelopment.Anime.Logic.AnimeManager;
-import f4dedDevelopment.Anime.Models.AddAnime;
-import f4dedDevelopment.Anime.Models.EditAnime;
+import f4dedDevelopment.Anime.Models.Anime.AddAnime;
+import f4dedDevelopment.Anime.Models.Anime.EditAnime;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

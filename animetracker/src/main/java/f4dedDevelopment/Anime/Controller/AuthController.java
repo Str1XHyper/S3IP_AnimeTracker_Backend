@@ -1,9 +1,10 @@
 package f4dedDevelopment.Anime.Controller;
 
+import f4dedDevelopment.Anime.Dal.User;
 import f4dedDevelopment.Anime.Logic.AuthenticationManager;
-import f4dedDevelopment.Anime.Models.Login;
-import f4dedDevelopment.Anime.Models.LoginResponse;
-import f4dedDevelopment.Anime.Models.Register;
+import f4dedDevelopment.Anime.Models.Auth.Login;
+import f4dedDevelopment.Anime.Models.Auth.LoginResponse;
+import f4dedDevelopment.Anime.Models.Auth.Register;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -23,7 +24,7 @@ public class AuthController {
 
     @POST
     @Path("/Register")
-    public boolean Register(Register register){
+    public User Register(Register register){
         return authenticationManager.AddUser(register);
     }
 
