@@ -23,4 +23,6 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       working-directory: ./animetracker
-      run: mvn clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
+      run: 
+        docker login -u {{secrets.docker_username}} -p {{secrets.docker_password}}
+        mvn clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
