@@ -24,12 +24,15 @@ jobs:
     - name: Build with Maven
       working-directory: ./animetracker
       run: mvn clean package -Dquarkus.container-image.build=true
-    - name: Push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: str1xhyper/animetracker
-        registry: docker.io
-        dockerfile: S3IP_AnimeTracker_Backend/animetracker/src/main/docker/Dockerfile.native
-        username: ${{secrets.DOCKER_USERNAME}}
-        password: ${{secrets.DOCKER_PASSWORD}}
+    - name: Test with Maven
+      working-directory: ./animetracker
+      run: mvn test
+    # - name: Push Docker image
+    #   uses: mr-smithers-excellent/docker-build-push@v4
+    #   with:
+    #     image: str1xhyper/animetracker
+    #     registry: docker.io
+    #     dockerfile: S3IP_AnimeTracker_Backend/animetracker/src/main/docker/Dockerfile.native
+    #     username: ${{secrets.DOCKER_USERNAME}}
+    #     password: ${{secrets.DOCKER_PASSWORD}}
 
