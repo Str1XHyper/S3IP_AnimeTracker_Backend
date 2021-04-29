@@ -28,8 +28,8 @@ public class AnimeController {
 
     @GET
     @Path("{Name}")
-    public String GetAnime(@PathParam("Name") String name){
-        return new Gson().toJson(animeManager.GetAnimeByName(name));
+    public Anime GetAnime(@PathParam("Name") String name){
+        return animeManager.GetAnimeByName(name);
     }
 
     @GET
