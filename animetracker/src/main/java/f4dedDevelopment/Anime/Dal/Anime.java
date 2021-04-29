@@ -2,9 +2,11 @@ package f4dedDevelopment.Anime.Dal;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Set;
 
 
 @Entity
@@ -15,6 +17,13 @@ public class Anime extends PanacheEntityBase implements Serializable {
     private String Description;
     private String ImgSrc;
     private String JapaneseName;
+    private Integer episodes;
+    private LocalDate releaseDate;
+    @ElementCollection(targetClass = Genre.class)
+    @CollectionTable(name = "AnimeGenres", joinColumns = @JoinColumn(name = "AnimeID"))
+    @Column(name = "GenreID")
+    @JsonbTransient
+    private Set<Genre> genres;
 
     public String getName() {
         return Name;
@@ -58,5 +67,29 @@ public class Anime extends PanacheEntityBase implements Serializable {
 
     public void setJapaneseName(String japaneseName) {
         JapaneseName = japaneseName;
+    }
+
+    public Integer getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(Integer episodes) {
+        this.episodes = episodes;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 }

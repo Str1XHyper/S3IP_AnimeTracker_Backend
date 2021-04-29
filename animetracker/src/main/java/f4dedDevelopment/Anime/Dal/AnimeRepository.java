@@ -1,8 +1,10 @@
 package f4dedDevelopment.Anime.Dal;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.panache.common.Sort;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 @ApplicationScoped
 public class AnimeRepository implements PanacheRepository<Anime> {
@@ -18,6 +20,10 @@ public class AnimeRepository implements PanacheRepository<Anime> {
 
     public void DeleteAnime(String id) {
         delete("id", id);
+    }
+
+    public List<Anime> FindNewest(){
+        return listAll(Sort.descending("releaseDate"));
     }
 
 }

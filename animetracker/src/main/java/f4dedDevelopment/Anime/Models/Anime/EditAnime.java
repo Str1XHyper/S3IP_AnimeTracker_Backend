@@ -1,4 +1,4 @@
-package f4dedDevelopment.Anime.Models;
+package f4dedDevelopment.Anime.Models.Anime;
 
 public class EditAnime {
     private String iD;

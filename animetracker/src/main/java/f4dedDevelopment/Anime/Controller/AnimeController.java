@@ -2,14 +2,16 @@ package f4dedDevelopment.Anime.Controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import f4dedDevelopment.Anime.Dal.Anime;
 import f4dedDevelopment.Anime.Logic.AnimeManager;
-import f4dedDevelopment.Anime.Models.AddAnime;
-import f4dedDevelopment.Anime.Models.EditAnime;
+import f4dedDevelopment.Anime.Models.Anime.AddAnime;
+import f4dedDevelopment.Anime.Models.Anime.EditAnime;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/Anime")
 @Produces(MediaType.APPLICATION_JSON)
@@ -31,8 +33,20 @@ public class AnimeController {
     }
 
     @GET
-    public String GetAnimes(){
-        return new Gson().toJson(animeManager.GetAllAnimes());
+    @Path("/All")
+    public List<Anime> GetAllAnimes(){
+        return animeManager.GetAllAnimes();
+    }
+
+    @GET
+    @Path("/Newest")
+    public List<Anime>  GetNewestAnimes(){
+        return animeManager.GetNewest();
+    }
+    @GET
+    @Path("/Recommended/{UserID}")
+    public List<Anime>  GetRecommendedAnimes(@PathParam("UserID") String UserID){
+        return animeManager.GetRecommended(UserID);
     }
 
 

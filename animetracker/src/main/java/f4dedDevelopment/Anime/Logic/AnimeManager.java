@@ -6,11 +6,12 @@ import javax.inject.Inject;
 import com.google.gson.JsonObject;
 import f4dedDevelopment.Anime.Dal.Anime;
 import f4dedDevelopment.Anime.Dal.AnimeRepository;
-import f4dedDevelopment.Anime.Models.AddAnime;
-import f4dedDevelopment.Anime.Models.EditAnime;
+import f4dedDevelopment.Anime.Dal.Genre;
+import f4dedDevelopment.Anime.Models.Anime.AddAnime;
+import f4dedDevelopment.Anime.Models.Anime.EditAnime;
 
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 @ApplicationScoped
 public class AnimeManager {
@@ -20,6 +21,10 @@ public class AnimeManager {
 
     public Anime GetAnimeByName(String Name) {
         return animeRepository.FindByName(Name);
+    }
+
+    public List<Anime> GetNewest(){
+        return animeRepository.FindNewest();
     }
 
     public boolean CreateAnime(AddAnime addAnime){
@@ -46,6 +51,12 @@ public class AnimeManager {
         anime.setName(animeModel.getName());
         anime.setImgSrc(animeModel.getImgSrc());
         anime.setJapaneseName(animeModel.getJapaneseName());
+        Set<Genre> genres = new HashSet<Genre>();
+        genres.add(Genre.Action);
+        genres.add(Genre.Adventure);
+        genres.add(Genre.Fantasy);
+        anime.setGenres(genres);
+        anime.setReleaseDate(LocalDate.now());
         anime.Save();
         return true;
     }
@@ -60,5 +71,9 @@ public class AnimeManager {
         }
         animeRepository.DeleteAnime(obj.get("ID").getAsString());
         return true;
+    }
+
+    public List<Anime> GetRecommended(String userID) {
+        return null;
     }
 }
