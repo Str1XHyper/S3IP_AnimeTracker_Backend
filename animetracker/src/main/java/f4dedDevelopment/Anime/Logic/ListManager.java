@@ -17,7 +17,7 @@ public class ListManager {
     @Inject ProgressRepository progressRepository;
 
     public boolean AddToPlanned(AddToList addToList){
-        AnimeProgress progress = progressRepository.FindByUserAnime(addToList.getUserID(), addToList.getAnimeID());
+        AnimeProgress progress = GetProgress(addToList.getUserID(), addToList.getAnimeID());
         if(progress == null){
             User user = userRepository.FindById(addToList.getUserID());
             Anime anime = animeRepository.FindByID(addToList.getAnimeID());
@@ -32,10 +32,10 @@ public class ListManager {
     }
 
     public boolean RemoveFromPlanned(DeleteFromList deleteFromList) {
-        AnimeProgress progress = progressRepository.FindByUserAnime(deleteFromList.getUserID(), deleteFromList.getAnimeID());
+        AnimeProgress progress = GetProgress(deleteFromList.getUserID(), deleteFromList.getAnimeID());
         progress.setPlanned(false);
         progress.persist();
-        return false;
+        return true;
     }
 
     public List<Anime> GetPlanned(String userID) {
@@ -48,7 +48,7 @@ public class ListManager {
     }
 
     public boolean AddToWatching(AddToList addToList){
-        AnimeProgress progress = progressRepository.FindByUserAnime(addToList.getUserID(), addToList.getAnimeID());
+        AnimeProgress progress = GetProgress(addToList.getUserID(), addToList.getAnimeID());
         if(progress == null){
             User user = userRepository.FindById(addToList.getUserID());
             Anime anime = animeRepository.FindByID(addToList.getAnimeID());
@@ -62,6 +62,44 @@ public class ListManager {
         return true;
     }
 
+    public List<AnimeProgress> GetWatching(String userID) {
+        return progressRepository.getWatching(userID);
+    }
+
+    public boolean RemoveFromWatching(DeleteFromList deleteFromList){
+        AnimeProgress progress = GetProgress(deleteFromList.getUserID(), deleteFromList.getAnimeID());
+        progress.setWatching(false);
+        progress.persist();
+        return true;
+    }
+
+    public boolean AddToCompleted(AddToList addToList){
+        AnimeProgress progress = GetProgress(addToList.getUserID(), addToList.getAnimeID());
+        if(progress == null){
+            User user = userRepository.FindById(addToList.getUserID());
+            Anime anime = animeRepository.FindByID(addToList.getAnimeID());
+
+            progress = createNewProgress(anime,user);
+        }
+        progress.setProgress(progress.getAnime().getEpisodes());
+        progress.setPlanned(false);
+        progress.setCompleted(true);
+        progress.setWatching(false);
+        progressRepository.persist(progress);
+        return false;
+    }
+
+    public List<AnimeProgress> GetCompleted(String userID) {
+        return progressRepository.getCompleted(userID);
+    }
+    public boolean RemoveFromCompleted(DeleteFromList deleteFromList){
+        System.out.println(deleteFromList.toString());
+        AnimeProgress progress = GetProgress(deleteFromList.getUserID(), deleteFromList.getAnimeID());
+        progress.setCompleted(false);
+        progress.persist();
+        return true;
+    }
+
     private AnimeProgress createNewProgress(Anime anime, User user){
         AnimeProgress progress = new AnimeProgress();
         progress.setId(UUID.randomUUID().toString());
@@ -71,7 +109,7 @@ public class ListManager {
         return progress;
     }
 
-    public List<AnimeProgress> GetWatching(String userID) {
-        return progressRepository.getWatching(userID);
+    private AnimeProgress GetProgress(String UserID, String AnimeID){
+        return progressRepository.FindByUserAnime(UserID, AnimeID);
     }
 }

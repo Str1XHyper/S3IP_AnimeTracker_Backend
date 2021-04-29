@@ -1,4 +1,4 @@
-package nl.Str1XHyper.jwt;
+package nl.xanderv2001.jwt;
 
 import org.jose4j.base64url.Base64Url;
 import org.jose4j.json.internal.json_simple.JSONObject;

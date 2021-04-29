@@ -49,4 +49,26 @@ public class ListController {
     public List<AnimeProgress> getWatching(@PathParam("UserID") String UserID){
         return listManager.GetWatching(UserID);
     }
+    @DELETE
+    @Path("/Watching/Remove")
+    public boolean DeleteFromWatching(DeleteFromList deleteFromList){
+        return listManager.RemoveFromWatching(deleteFromList);
+    }
+
+    @POST
+    @Path("/Completed/Add")
+    public boolean AddToCompleted(AddToList addToList){
+        return listManager.AddToCompleted(addToList);
+    }
+
+    @GET
+    @Path("/Completed/Get/{UserID}")
+    public List<AnimeProgress> getCompleted(@PathParam("UserID") String UserID){
+        return listManager.GetCompleted(UserID);
+    }
+    @DELETE
+    @Path("/Completed/Remove")
+    public boolean DeleteFromCompleted(DeleteFromList deleteFromList){
+        return listManager.RemoveFromCompleted(deleteFromList);
+    }
 }

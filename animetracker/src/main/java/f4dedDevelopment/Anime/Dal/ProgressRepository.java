@@ -12,6 +12,7 @@ public class ProgressRepository implements PanacheRepository<AnimeProgress> {
         Map<String, Object> params = new HashMap<>();
         params.put("User", UserID);
         params.put("Anime", AnimeID);
+        System.out.println(params);
         return find("user_ID = :User and anime_ID = :Anime", params).firstResult();
     }
 
@@ -27,5 +28,12 @@ public class ProgressRepository implements PanacheRepository<AnimeProgress> {
         params.put("User", userID);
         params.put("Watching", true);
         return list("user_ID = :User And isWatching = :Watching", params);
+    }
+
+    public List<AnimeProgress> getCompleted(String userID) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("User", userID);
+        params.put("Completed", true);
+        return list("user_ID = :User And isCompleted = :Completed", params);
     }
 }

@@ -1,4 +1,4 @@
-package nl.Str1XHyper.jwt;
+package nl.xanderv2001.jwt;
 
 import javax.crypto.SecretKey;
 import java.util.HashMap;

@@ -20,4 +20,11 @@ public class DeleteFromList {
         this.userID = userID;
     }
 
+    @Override
+    public String toString() {
+        return "DeleteFromList{" +
+                "animeID='" + animeID + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
 }

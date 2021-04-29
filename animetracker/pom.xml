@@ -82,11 +82,14 @@
       <artifactId>quarkus-security-jpa</artifactId>
     </dependency>
     <dependency>
-    <groupId>org.bitbucket.b_c</groupId>
-    <artifactId>jose4j</artifactId>
-    <version>0.7.2</version>
-  </dependency>
-
+      <groupId>org.bitbucket.b_c</groupId>
+      <artifactId>jose4j</artifactId>
+      <version>0.7.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-docker</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

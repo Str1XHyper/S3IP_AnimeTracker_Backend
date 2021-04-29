@@ -1,8 +1,8 @@
 package f4dedDevelopment.Anime.Logic;
 
 import f4dedDevelopment.Anime.Dal.Session;
-import nl.Str1XHyper.jwt.JWT;
-import nl.Str1XHyper.jwt.JWTException;
+import nl.xanderv2001.jwt.JWT;
+import nl.xanderv2001.jwt.JWTException;
 import org.jose4j.json.internal.json_simple.parser.ParseException;
 
 import javax.crypto.SecretKey;
