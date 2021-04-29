@@ -30,7 +30,7 @@ jobs:
         image: str1xhyper/animetracker
         registry: docker.io
         dockerfile: Dockerfile.native
-        directory: /animetracker/src/main/docker
+        directory: ./animetracker/src/main/docker
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
 
