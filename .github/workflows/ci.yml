@@ -25,9 +25,12 @@ jobs:
       working-directory: ./animetracker
       run: mvn clean package -Dquarkus.container-image.build=true
     - name: Push Docker image
+      working-directory: ./animetracker/src/main/docker
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: str1xhyper/animetracker
         registry: docker.io
+        dockerfile: Dockerfile.native
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
+
