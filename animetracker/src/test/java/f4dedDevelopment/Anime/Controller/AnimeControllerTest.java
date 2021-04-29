@@ -24,7 +24,7 @@ public class AnimeControllerTest {
     public void GetAnimeByName(){
         //Arrange
         String AnimeName = "Attack on Titan";
-        Anime expected = null;
+        Anime expected = new Anime();
         Mockito.when(animeManager.GetAnimeByName(AnimeName)).thenReturn(expected);
 
         //Act
@@ -41,6 +41,19 @@ public class AnimeControllerTest {
         Mockito.when(animeManager.GetAllAnimes()).thenReturn(expected);
         //Act
         List<Anime> actual = animeController.GetAllAnimes();
+        //Assert
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void GetNewestAnimes(){
+        //Arrange
+        List<Anime> expected = new ArrayList<>();
+        Mockito.when(animeManager.GetNewest()).thenReturn(expected);
+
+        //Act
+        List<Anime> actual = animeController.GetNewestAnimes();
+
         //Assert
         Assertions.assertEquals(expected,actual);
     }
