@@ -1,0 +1,38 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Quarkus build and push to Docker hub
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 15
+      uses: actions/setup-java@v2
+      with:
+        java-version: '15'
+        distribution: 'adopt'
+    - name: Build with Maven
+      working-directory: ./animetracker
+      run: mvn clean package -Dquarkus.container-image.build=true
+    - name: Test with Maven
+      working-directory: ./animetracker
+      run: mvn test
+    # - name: Push Docker image
+    #   uses: mr-smithers-excellent/docker-build-push@v4
+    #   with:
+    #     image: str1xhyper/animetracker
+    #     registry: docker.io
+    #     dockerfile: S3IP_AnimeTracker_Backend/animetracker/src/main/docker/Dockerfile.native
+    #     username: ${{secrets.DOCKER_USERNAME}}
+    #     password: ${{secrets.DOCKER_PASSWORD}}
+
