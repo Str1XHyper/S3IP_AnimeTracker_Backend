@@ -1,8 +1,9 @@
-# animetracker project
+# Animetracker
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project is made for a Fontys Individual project;
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project is made using quarkus and Hibernate/Panache
+
 
 ## Running the application in dev mode
 
@@ -11,40 +12,19 @@ You can run your application in dev mode that enables live coding using:
 ./mvnw compile quarkus:dev
 ```
 
-## Packaging and running the application
+## Packaging and deploying the application
 
 The application can be packaged using:
 ```shell script
-./mvnw package
+./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=Str1XHyper -Dquarkus.container-image.group=animetracker -Dquarkus.container-image.tag=latest
 ```
-It produces the `animetracker-1.0.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+It produces a Docker container and it automatically pushes to https://hub.docker.com/.
 
-If you want to build an _über-jar_, execute the following command:
+It is now runnable using Docker by using
 ```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
+docker run -d -p 8002:3000 --name animetracker --rm Str1XHyper/animetracker:latest
 ```
 
-The application is now runnable using `java -jar target/animetracker-1.0.0-SNAPSHOT-runner.jar`.
+## Debugging environment
 
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/animetracker-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
-
-# RESTEasy JAX-RS
-
-<p>A Hello World RESTEasy resource</p>
-
-Guide: https://quarkus.io/guides/rest-json
+When the application is running you can navigate to /q/swagger-ui for the debug environment
