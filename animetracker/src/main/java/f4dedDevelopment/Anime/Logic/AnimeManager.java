@@ -27,7 +27,7 @@ public class AnimeManager {
         return animeRepository.FindNewest();
     }
 
-    public boolean CreateAnime(AddAnime addAnime){
+    public Anime CreateAnime(AddAnime addAnime){
         Anime anime = new Anime();
         anime.setId(UUID.randomUUID().toString());
         anime.setDescription(addAnime.getDescription());
@@ -37,10 +37,10 @@ public class AnimeManager {
 
         try {
             animeRepository.persist(anime);
-            return true;
+            return anime;
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
-            return false;
+            return null;
         }
     }
 

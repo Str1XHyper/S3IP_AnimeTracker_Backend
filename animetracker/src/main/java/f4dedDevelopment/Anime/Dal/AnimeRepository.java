@@ -16,6 +16,7 @@ public class AnimeRepository implements PanacheRepository<Anime> {
 
     public Anime FindByID(String id) {
         return find("id", id).firstResult();
+
     }
 
     public void DeleteAnime(String id) {

@@ -22,7 +22,7 @@ public class AnimeController {
 
     @POST
     @Path("AddAnime")
-    public boolean AddAnime(AddAnime anime){
+    public Anime AddAnime(AddAnime anime){
         return animeManager.CreateAnime(anime);
     }
 
@@ -43,6 +43,7 @@ public class AnimeController {
     public List<Anime>  GetNewestAnimes(){
         return animeManager.GetNewest();
     }
+
     @GET
     @Path("/Recommended/{UserID}")
     public List<Anime>  GetRecommendedAnimes(@PathParam("UserID") String UserID){
