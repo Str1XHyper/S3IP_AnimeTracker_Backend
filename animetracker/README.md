@@ -16,7 +16,7 @@ You can run your application in dev mode that enables live coding using:
 
 The application can be packaged using:
 ```shell script
-./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=Str1XHyper -Dquarkus.container-image.group=animetracker -Dquarkus.container-image.tag=latest
+./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=animetracker -Dquarkus.container-image.group=str1xhyper -Dquarkus.container-image.tag=latest
 ```
 It produces a Docker container and it automatically pushes to https://hub.docker.com/.
 
