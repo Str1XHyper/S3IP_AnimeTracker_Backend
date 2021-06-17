@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/Anime")
@@ -22,8 +23,13 @@ public class AnimeController {
 
     @POST
     @Path("AddAnime")
-    public Anime AddAnime(AddAnime anime){
-        return animeManager.CreateAnime(anime);
+    public Response AddAnime(AddAnime addAnime){
+        Anime anime = animeManager.CreateAnime(addAnime);
+        if(anime == null){
+            return Response.status(Response.Status.CONFLICT).build();
+        } else {
+            return Response.ok(anime).build();
+        }
     }
 
     @GET
